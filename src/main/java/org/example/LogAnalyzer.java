@@ -22,11 +22,33 @@ public class LogAnalyzer {
         return counts;
     }
 
+    public String getMostFrequentStatus(List<String> statuscodes) {
+        Map<String, Integer> counts = countStatusCodes(statuscodes);
+
+        if (counts.isEmpty()) {
+            return null;
+        }
+
+        String mostFrequentCode = null;
+        int maxCount = 0;
+
+        for (Map.Entry<String, Integer> entry : counts.entrySet()) {
+            if (entry.getValue() > maxCount) {
+                maxCount = entry.getValue();
+                mostFrequentCode = entry.getKey();
+            }
+        }
+        return mostFrequentCode;
+    }
+
     public static void main(String[] args) {
         LogAnalyzer analyzer = new LogAnalyzer();
         List<String> sampleLogs = List.of("200", "404", "200", "500", "200", "404");
 
         Map<String, Integer> result = analyzer.countStatusCodes(sampleLogs);
         System.out.println("Status code counts: " + result);
+
+        String mostFrequent = analyzer.getMostFrequentStatus(sampleLogs);
+        System.out.println("Most Frequent status code: " + mostFrequent);
     }
 }
