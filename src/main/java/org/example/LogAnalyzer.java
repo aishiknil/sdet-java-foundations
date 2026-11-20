@@ -22,8 +22,8 @@ public class LogAnalyzer {
         return counts;
     }
 
-    public String getMostFrequentStatus(List<String> statuscodes) {
-        Map<String, Integer> counts = countStatusCodes(statuscodes);
+    public String getMostFrequentStatus(List<String> statuses) {
+        Map<String, Integer> counts = countStatusCodes(statuses);
 
         if (counts.isEmpty()) {
             return null;
